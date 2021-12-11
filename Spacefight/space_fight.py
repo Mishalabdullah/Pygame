@@ -40,7 +40,7 @@ RED_SPACESHIP = pygame.transform.rotate(
 SPACE = pygame.transform.scale(pygame.image.load('Spacefight/Assets/space.png'),(WIDTH,HEIGHT))
 
 
-
+# Drawing all the assets in the pygame window
 
 def draw(red,yellow,red_bullets,yellow_bullets):
     WIN.blit(SPACE,(0,0))
@@ -54,7 +54,7 @@ def draw(red,yellow,red_bullets,yellow_bullets):
         pygame.draw.rect(WIN,YELLOW,bullets)
     pygame.display.update()
 
-
+#Handeling YELLOW Movements
 def yellow_movement(keys_press,yellow):
         if keys_press[pygame.K_a] and yellow.x- VEL > 0:#BACK
             yellow.x -= VEL
@@ -64,7 +64,7 @@ def yellow_movement(keys_press,yellow):
             yellow.y -= VEL
         if keys_press[pygame.K_s]and yellow.y + VEL +yellow.height+15 < HEIGHT:#Right
             yellow.y += VEL
-
+# Handeling RED Movements
 def red_movement(keys_press,red):
         if keys_press[pygame.K_LEFT]and red.x- VEL > WIDTH/2+15:#BACK
             red.x -= VEL
@@ -75,7 +75,7 @@ def red_movement(keys_press,red):
         if keys_press[pygame.K_DOWN]and red.y + VEL + red.height+15 < HEIGHT:#Right
             red.y += VEL
 
-
+#Handeling Bullets
 def handle_bullets(yellow_bullets,red_bullets,red,yellow):
     for bullet in yellow_bullets:
         bullet.x += BULLET_VEL
