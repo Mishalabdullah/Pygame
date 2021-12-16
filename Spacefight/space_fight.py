@@ -3,6 +3,7 @@ import pygame
 import os
 from pygame.draw import rect
 pygame.font.init()
+pygame.mixer.init()
 
 
 from pygame.time import Clock
@@ -27,6 +28,8 @@ BULLET_VEL = 8
 MAX_BULLETS = 3
 YELLOW_HIT  = pygame.USEREVENT +1
 RED_HIT = pygame.USEREVENT +2 
+BULLET_HIT_SOUND = pygame.mixer.Sound('Spacefight/Assets/Grenade+1.mp3')
+BULLET_FIRE =  pygame.mixer.Sound('Spacefight/Assets/Gun+Silencer.mp3')
 
 
 
@@ -130,14 +133,18 @@ def main():
                 if event.key == pygame.K_LCTRL and len(yellow_bullets)< MAX_BULLETS:
                     bullet = pygame.Rect(yellow.x+yellow.width,yellow.y+yellow.height//2 -2, 10, 5)
                     yellow_bullets.append(bullet)
+                    BULLET_FIRE.play()
                 if event.key == pygame.K_RCTRL and len(red_bullets)< MAX_BULLETS:
                     bullet = pygame.Rect(red.x,red.y+ red.height//2 , 10, 5)
                     red_bullets.append(bullet)
+                    BULLET_FIRE.play()
             if event.type == RED_HIT:
                 red_health = red_health - 1
+                BULLET_HIT_SOUND.play()
 
             if event.type == YELLOW_HIT:
                 yellow_health =  yellow_health - 1
+                BULLET_HIT_SOUND.play()
         winner_text = ""
         if red_health <= 0 :
             winner_text = "Yellow Wins!"
