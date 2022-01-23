@@ -28,21 +28,21 @@ BULLET_VEL = 8
 MAX_BULLETS = 3
 YELLOW_HIT  = pygame.USEREVENT +1
 RED_HIT = pygame.USEREVENT +2 
-BULLET_HIT_SOUND = pygame.mixer.Sound('Spacefight/Assets/Grenade+1.mp3')
-BULLET_FIRE =  pygame.mixer.Sound('Spacefight/Assets/Gun+Silencer.mp3')
+BULLET_HIT_SOUND = pygame.mixer.Sound('Assets/Grenade+1.mp3')
+BULLET_FIRE =  pygame.mixer.Sound('Assets/Gun+Silencer.mp3')
 
 
 
 
 
 ## loading all the assests
-YELLOW_SPACESHIP_IMAGE = pygame.image.load('Spacefight/Assets/spaceship_yellow.png')
+YELLOW_SPACESHIP_IMAGE = pygame.image.load('Assets/spaceship_yellow.png')
 YELLOW_SPACESHIP = pygame.transform.rotate(
     pygame.transform.scale(YELLOW_SPACESHIP_IMAGE,(SPACESHIP_HIGHT,SPACESHIP_WIDTH)),90)
-RED_SPACESHIP_IMAGE = pygame.image.load('Spacefight/Assets/spaceship_red.png')
+RED_SPACESHIP_IMAGE = pygame.image.load('Assets/spaceship_red.png')
 RED_SPACESHIP = pygame.transform.rotate(
     pygame.transform.scale(RED_SPACESHIP_IMAGE,(SPACESHIP_HIGHT,SPACESHIP_WIDTH)),270)
-SPACE = pygame.transform.scale(pygame.image.load('Spacefight/Assets/space.png'),(WIDTH,HEIGHT))
+SPACE = pygame.transform.scale(pygame.image.load('Assets/space.png'),(WIDTH,HEIGHT))
 
 
 # Drawing all the assets in the pygame window

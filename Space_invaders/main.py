@@ -30,7 +30,7 @@ def main():
     player = Player(300, 200)
     enemies = []
     wave_length = 5
-    enemy_vel = 10
+    enemy_vel = 5
     
     def redraw_window():
         WIN.blit(BG, (0,0))
