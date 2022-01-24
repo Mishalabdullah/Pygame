@@ -28,32 +28,50 @@ def main():
     lives = 5
     player_vel = 8
     player = Player(300, 200)
+    fire_bullet = []
     enemies = []
     wave_length = 5
-    enemy_vel = 5
+    enemy_vel = 1
+    laser_vel = 8
+    Yellow=(255,255,0)
     
-    def redraw_window():
+    def handle_lasers(fire_bullet):       
+        for lasers in fire_bullet:
+            player.y -= laser_vel        
+    def redraw_window(fire_bullet):
         WIN.blit(BG, (0,0))
         # draw text
         lives_label = main_font.render(f"Lives: {lives}", 1, (255,255,255))
         level_label = main_font.render(f"Level: {level1}", 1, (255,255,255))
-
+        bullet = assets.YELLOW_LASER
+        for lasers in fire_bullet:
+            pygame.draw.rect(WIN,Yellow,lasers)
         WIN.blit(lives_label, (10, 10))
         WIN.blit(level_label, (WIDTH -195,10))
+        #blasting = WIN.blit(bullet,(player.x,player.y))
 
+            #WIN.blit(bullet,(player.x,player.y))
+        '''for i in fire_bullet:
+            pygame.draw.rect(WIN,Yellow,i)'''
         for enemy in enemies:
             enemy.draw(WIN)
 
         player.draw(WIN)
-
+        
         if lost:
             lost_label = lost_font.render("You Lost!!", 1, (255,255,255))
             WIN.blit(lost_label, (WIDTH/2-130,HEIGHT/2-100))     
 
+    
         pygame.display.update()
+    def handle_laser(laser_fire):
+        for i in fire_bullet:
+            i.y += laser_vel
+            
+
     while run:
         clock.tick(FPS)
-        redraw_window()
+        
 
         if lives <= 0 or player.health <= 0:
             lost = True
@@ -85,12 +103,18 @@ def main():
             player.y += player_vel
         if keys[pygame.K_w]and player.y -player_vel >0:
             player.y -= player_vel
+        if keys[pygame.K_SPACE]: 
+                lasers = pygame.Rect(player.x+45, player.y-20 , 10, 25)
+                fire_bullet.append(lasers)
+
+                  
+            
         for enemy in enemies:
             enemy.move(enemy_vel)
             if enemy.y + 30  > HEIGHT:
                 lives -= 1
                 enemies.remove((enemy))
         
-        redraw_window()
+        redraw_window(fire_bullet)
     pygame.display.flip()
 main()
