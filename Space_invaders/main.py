@@ -35,9 +35,10 @@ def main():
     laser_vel = 8
     Yellow=(255,255,0)
     
-    def handle_lasers(fire_bullet):       
+    def handle_lasers(fire_bullet):  
+   
         for lasers in fire_bullet:
-            player.y -= laser_vel        
+            lasers.y -= laser_vel        
     def redraw_window(fire_bullet):
         WIN.blit(BG, (0,0))
         # draw text
@@ -55,7 +56,7 @@ def main():
             pygame.draw.rect(WIN,Yellow,i)'''
         for enemy in enemies:
             enemy.draw(WIN)
-
+        handle_lasers(fire_bullet)
         player.draw(WIN)
         
         if lost:
