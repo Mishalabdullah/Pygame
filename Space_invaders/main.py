@@ -35,13 +35,11 @@ def main():
     laser_vel = 8
     Yellow=(255,255,0)
     
-    def handle_lasers(fire_bullet):  
-   
+    def handle_lasers(fire_bullet):     
         for lasers in fire_bullet:
             lasers.y -= laser_vel        
     def redraw_window(fire_bullet):
         WIN.blit(BG, (0,0))
-        # draw text
         lives_label = main_font.render(f"Lives: {lives}", 1, (255,255,255))
         level_label = main_font.render(f"Level: {level1}", 1, (255,255,255))
         bullet = assets.YELLOW_LASER
@@ -49,11 +47,6 @@ def main():
             pygame.draw.rect(WIN,Yellow,lasers)
         WIN.blit(lives_label, (10, 10))
         WIN.blit(level_label, (WIDTH -195,10))
-        #blasting = WIN.blit(bullet,(player.x,player.y))
-
-            #WIN.blit(bullet,(player.x,player.y))
-        '''for i in fire_bullet:
-            pygame.draw.rect(WIN,Yellow,i)'''
         for enemy in enemies:
             enemy.draw(WIN)
         handle_lasers(fire_bullet)
@@ -69,10 +62,8 @@ def main():
         for i in fire_bullet:
             i.y += laser_vel
             
-
     while run:
-        clock.tick(FPS)
-        
+        clock.tick(FPS)       
 
         if lives <= 0 or player.health <= 0:
             lost = True
@@ -106,9 +97,7 @@ def main():
             player.y -= player_vel
         if keys[pygame.K_SPACE]: 
                 lasers = pygame.Rect(player.x+45, player.y-20 , 10, 25)
-                fire_bullet.append(lasers)
-
-                  
+                fire_bullet.append(lasers)                
             
         for enemy in enemies:
             enemy.move(enemy_vel)
